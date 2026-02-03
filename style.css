@@ -1,126 +1,111 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Cambiamos la ruta para que entre a la carpeta 'img' */
-    background: #0d1117 url('img/img.png') center/cover fixed no-repeat;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
-    overflow: hidden;
+    background: url('img/img.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
 }
 
 #canvas {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: 1;
     pointer-events: none;
 }
 
-.login-container {
+/* Pantalla de Carga */
+#loader-screen {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('img/img.png') center/cover;
+    z-index: 9999;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome-text {
+    color: white;
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 8px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease;
+}
+
+#user-name-display { color: #38bdf8; font-weight: bold; }
+
+/* Contenedores */
+.login-container, .home-container {
     position: relative;
     z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 45px 40px;
+    background: rgba(15, 23, 42, 0.9);
+    padding: 40px;
+    border-radius: 20px;
     width: 90%;
-    max-width: 420px;
-}
-
-.login-container h2 {
-    color: white;
-    font-size: 1.8rem;
-    letter-spacing: 3px;
-    margin-bottom: 35px;
+    max-width: 400px;
     text-align: center;
-    font-weight: 600;
-    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-form {
+.home-container { max-width: 800px; margin: 20px; }
+
+h2, h1 { color: white; margin-bottom: 25px; letter-spacing: 2px; }
+
+.form-group { margin-bottom: 15px; text-align: left; }
+
+label { color: #cbd5e1; font-size: 14px; }
+
+input, select, textarea {
     width: 100%;
-}
-
-.form-group {
-    width: 100%;
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    color: #ccc;
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    font-weight: 300;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 14px 18px;
-    background: rgba(30, 30, 30, 0.7);
-    border: 1px solid #444;
+    padding: 12px;
+    margin-top: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #334155;
     border-radius: 8px;
     color: white;
-    font-size: 1.05rem;
-    transition: border-color 0.3s;
-}
-
-.form-group input:focus {
     outline: none;
-    border-color: #666;
 }
 
 button {
     width: 100%;
-    padding: 16px;
+    padding: 14px;
+    margin-top: 20px;
     background: white;
-    color: black;
+    color: #0f172a;
     border: none;
     border-radius: 8px;
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
-    transition: opacity 0.3s;
+    transition: 0.3s;
+    text-transform: uppercase;
 }
 
-button:hover {
-    opacity: 0.95;
+button:hover { background: #cbd5e1; transform: translateY(-2px); }
+
+/* Estilo de Tareas */
+.task-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
 }
 
-.register-link {
-    display: block;
-    color: #aaa;
-    text-decoration: none;
-    font-size: 0.9rem;
-    margin-top: 25px;
-    transition: color 0.3s;
-}
-
-.register-link:hover {
-    color: white;
-    text-decoration: underline;
-}
-
-@media (max-width: 480px) {
-    .login-container {
-        padding: 35px 30px;
-        margin: 15px;
-    }
-}
+.task-subject { background: #38bdf8; color: #0f172a; padding: 2px 8px; border-radius: 5px; font-size: 0.7rem; font-weight: bold; }

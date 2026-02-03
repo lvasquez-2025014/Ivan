@@ -7,22 +7,41 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="loader-screen">
+        <h1 id="welcome-text">
+            BIENVENIDO <br> <span id="user-name-display"></span>
+        </h1>
+    </div>
+
     <canvas id="canvas"></canvas>
 
-    <div class="login-container">
-        <h2>ACCESO PRIVADO</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required>
-            </div>
-            <button type="submit">ENTRAR</button>
-        </form>
-        <a href="#" class="register-link">¿Sin acceso? Regístrate</a>
+    <div class="login-container" id="form-container">
+        <div id="login-section">
+            <h2>ACCESO PRIVADO</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required placeholder="adminIvan@admin.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">ENTRAR</button>
+            </form>
+            <a href="#" class="toggle-link" onclick="toggleForm()">¿Sin acceso? Regístrate</a>
+        </div>
+
+        <div id="register-section" style="display: none;">
+            <h2>REGISTRO</h2>
+            <form id="registerForm">
+                <div class="form-group"><label>Usuario</label><input type="text" id="reg-user" required></div>
+                <div class="form-group"><label>Email</label><input type="email" id="reg-email" required></div>
+                <div class="form-group"><label>Contraseña</label><input type="password" id="reg-pass" required></div>
+                <button type="submit">REGISTRAR</button>
+            </form>
+            <a href="#" class="toggle-link" onclick="toggleForm()">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
     </div>
 
     <script src="script.js"></script>
